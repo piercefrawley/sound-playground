@@ -8,7 +8,7 @@ gulp.task('webpack-hot', webpackServer);
 gulp.task('build_js', function() {
   return gulp.src("./sound.js")
           .pipe(webpack(require('./webpack.config.js')))
-          .pipe(gulp.dest(".."));
+          .pipe(gulp.dest("./assets"));
 });
 
 gulp.task('default', ['build_js']);

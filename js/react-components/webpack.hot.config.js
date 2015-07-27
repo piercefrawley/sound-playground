@@ -13,16 +13,16 @@ module.exports = {
 
   entry: {
     sound: [
-      'webpack-dev-server/client?http://'+ baseUrl +':8080/',
+      'webpack-dev-server/client?http://' + baseUrl + ':8080',
       'webpack/hot/only-dev-server',
-      './sound.js'
+      './entry.js'
     ]
   },
 
   output: {
     filename: '[name].bundle.js',
-    path: __dirname + '/public/assets/js',
-    publicPath: 'http://'+baseUrl+':8080/assets'
+    path: __dirname + '/js',
+    publicPath: 'http://' + baseUrl + ':8080'
   },
 
   plugins: plugins,

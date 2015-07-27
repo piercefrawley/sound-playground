@@ -14,7 +14,7 @@ module.exports = function() {
       noInfo: false,
       lazy: false,
       watchDelay: 20,
-      publicPath: 'http://'+ baseUrl +':8080/assets',
+      publicPath: 'http://'+ baseUrl +':8080',
       stats: { colors: true },
   });
   server.listen(8080, baseUrl, function() {});
