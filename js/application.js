@@ -8,5 +8,5 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require recorderjs/recorder.js
-//= require react-components/vendor.bundle
-//= require react-components/app.bundle
+//= require react-components/assets/vendor.bundle
+//= require react-components/assets/app.bundle
