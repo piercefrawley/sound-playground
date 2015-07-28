@@ -1,15 +1,15 @@
 var
   gulp = require('gulp'),
-  websocket = require('websocket'),
-  websocketServer = require('./websocket/server.js');
+  webpack = require('gulp-webpack'),
+  webpackServer = require('./webpack-server');
 
-gulp.task('websocket', websocketServer);
+gulp.task('webpack-hot', webpackServer);
 
 gulp.task('build_js', function() {
   return gulp.src("./app.js")
-          .pipe(webpack(require('./websocket/server.js')))
-          .pipe(gulp.dest("./builds"));
+          .pipe(webpack(require('./webpack.config.js')))
+          .pipe(gulp.dest("../build"));
 });
 
 gulp.task('default', ['build_js']);
-gulp.task('dev', ['websocket']);
+gulp.task('dev', ['webpack-hot']);
