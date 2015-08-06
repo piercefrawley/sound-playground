@@ -7,6 +7,5 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= require recorderjs/recorder.js
-//= require react-components/assets/vendor.bundle
-//= require react-components/assets/app.bundle
+//= require node/app.js
+  
