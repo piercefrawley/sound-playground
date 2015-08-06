@@ -1,13 +1,14 @@
-var http = require('http');
+const http = require('http');
 const PORT=8080; 
+const app = require('express')();
+const server = http.createServer(app);
+const io = require('socket.io')(server);
 
-function handleRequest(request, response){
-    response.end('It Works!! Path Hit: ' + request.url);
-}
+app.get('/', function(req, res) {
+  res.send('hello world');
+});
 
-var server = http.createServer(handleRequest);
-
-
+io.on('connection', function(){ /* … */ });
 server.listen(PORT, function(){
     console.log("Server listening on: http://localhost:%s", PORT);
 });
