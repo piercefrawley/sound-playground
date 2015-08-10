@@ -5,19 +5,53 @@ const server  = http.createServer(app);
 const io      = require('socket.io')(server);
 const PORT    = 8080; 
 
-app.get('/', function(request, response) {
-  console.log(app.mountpath); 
-  response.send('GET homepage request');
+/***************************/
+/* Routes for the main app */
+/***************************/
+
+app.get('/', function(req, res) {
+  console.log(req.method + ' request to: ' + app.mountpath);
+  res.send('GET homepage req');
 });
 
+app.get('/file/:name', function (req, res, next) {
+  var options = {
+    root: __dirname,
+    dotfiles: 'deny',
+    headers: {
+        'x-timestamp': Date.now(),
+        'x-sent': true
+    }
+  };
+
+  var fileName = req.params.name;
+  res.sendFile(fileName, options, function (err) {
+    if (err) {
+      console.log(err);
+      res.status(err.status).end();
+    }
+    else {
+      console.log('Sent:', fileName);
+    }
+  });
+});
+
+app.use('/admin', admin);
+
+/**************************/
+/* Routes for the sub app */
+/**************************/
+
 admin.get('/', function (req, res) {
-  console.log(admin.mountpath);
+  console.log(req.method + ' request to: ' + admin.mountpath);
   res.send('Admin Homepage');
-})
+});
 
-app.use('/admin', admin); // mount the sub app
+/*************************/
+/* Set Server Connection */
+/*************************/
 
-io.on('connection', function(){ /* … */ });
+io.on('connection', function(){ /* ... */ });
 
 server.listen(PORT, function(){
     console.log("Server listening on: http://localhost:%s", PORT);
