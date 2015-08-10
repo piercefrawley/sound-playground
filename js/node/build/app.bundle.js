@@ -1,1 +1,0 @@
-webpackJsonp([0],[function(o,e,n){"use strict";Object.freeze=Object.freeze||function(){},console.log("Hello World"),window.React=n(1),window.Sound=function(){console.log("Hello Sound Playground")}}]);
