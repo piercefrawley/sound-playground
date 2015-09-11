@@ -11,6 +11,7 @@
     "moment": "~2.8.3",
     "q": "^1.2.0",
     "react": "~0.13",
+    "react-bootstrap": "^0.25.1",
     "react-hot-loader": "^1.2.8",
     "react-router": "^0.13",
     "reflux": "~0.2.5",
