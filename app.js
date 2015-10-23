@@ -11,7 +11,7 @@ const PORT    = 8080;
 
 app.get('/', function(req, res) {
   console.log(req.method + ' request to: ' + app.mountpath);
-  res.send('GET homepage req');
+  res.sendFile(__dirname + '/index.html');
 });
 
 app.get('/file/:name', function (req, res, next) {
