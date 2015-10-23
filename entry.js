@@ -1,1 +1,1 @@
-document.write("Hello World");
+cosole.log('Hello World');

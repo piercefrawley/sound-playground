@@ -51,7 +51,9 @@ admin.get('/', function (req, res) {
 /* Set Server Connection */
 /*************************/
 
-io.on('connection', function(){ /* ... */ });
+io.on('connection', function(){ 
+  make
+});
 
 server.listen(PORT, function(){
     console.log("Server listening on: http://localhost:%s", PORT);
