@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "description": "Sound Playground",
   "dependencies": {
+    "babel": "^5.8.23",
     "classnames": "^2.1.2",
     "cookies-js": "^1.2.1",
     "css-animation": "^1.0.5",
@@ -35,7 +36,9 @@
     "json-loader": "^0.5.1"
   },
   "scripts": {
-    "build": "webpack ./entry bundle.js"
+    "build": "webpack ./entry bundle.js",
+    "start": "npm run backend:dev",
+    "backend:dev": "babel-node server"
   },
   "author": "Pierce Frawley"
 }
