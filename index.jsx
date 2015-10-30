@@ -5,6 +5,6 @@ export default class HelloWorld extends React.Component {
   return <div onClick={this._handleClick}>Hello, world.</div>;
  }
  _handleClick() {
-  console.log(this); // this is undefined
+  console.log(this); 
  }
 }
