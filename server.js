@@ -1,61 +1,36 @@
-const app     = require('express')();
-const admin   = require('express')();
-const http    = require('http');
-const server  = http.createServer(app);
-const io      = require('socket.io')(server);
-const PORT    = 8080; 
+import express from 'express';
+import fs from 'fs';
+import path from 'path';
+import webpack from 'webpack';
+import devServer from 'webpack-dev-server';
+import config from './webpack.config.js';
 
-/***************************/
-/* Routes for the main app */
-/***************************/
+const compiler = webpack(config);
 
-app.get('/', function(req, res) {
-  console.log(req.method + ' request to: ' + app.mountpath);
-  res.sendFile(__dirname + '/index.html');
+/** Boot Static Server */
+
+const app = express();
+
+app.get('/*',(req, res) => {
+  res.sendFile(path.join(__dirname, '/index.html'));
 });
 
-app.get('/file/:name', function (req, res, next) {
-  var options = {
-    root: __dirname,
-    dotfiles: 'deny',
-    headers: {
-        'x-timestamp': Date.now(),
-        'x-sent': true
-    }
-  };
+app.use(express.static('public'));
 
-  var fileName = req.params.name;
-  res.sendFile(fileName, options, function (err) {
-    if (err) {
-      console.log(err);
-      res.status(err.status).end();
-    }
-    else {
-      console.log('Sent:', fileName);
-    }
-  });
+/** Webpack Server */
+const server = new devServer(compiler, {
+    contentBase: 'http://localhost:8081',
+    hot: true,
+    quiet: false,
+    noInfo: false,
+    lazy: false,
+    watchDelay: 20,
+    publicPath: 'http://localhost:8081/build',
+    stats: { colors: true },
 });
 
-app.use('/admin', admin);
-
-/**************************/
-/* Routes for the sub app */
-/**************************/
-
-admin.get('/', function (req, res) {
-  console.log(req.method + ' request to: ' + admin.mountpath);
-  res.send('Admin Homepage');
+server.listen(8081, 'localhost', function() {
+  console.log('wepback dev server is listening on port 8081');
 });
 
-/*************************/
-/* Set Server Connection */
-/*************************/
-
-io.on('connection', function(){ 
-  make
-});
-
-server.listen(PORT, function(){
-    console.log("Server listening on: http://localhost:%s", PORT);
-});
-
+app.listen(8080);

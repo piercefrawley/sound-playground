@@ -1,34 +1,42 @@
 var webpack = require('webpack');
+var path = require('path');
 
 module.exports = {
-  entry: [
-    'webpack-dev-server/client?http://localhost:8080',
-    'webpack/hot/only-dev-server',
-    './index.jsx'
-  ],
-  module: {
-    loaders: [{
-      test: /\.jsx?$/,
-      exclude: /node_modules/,
-      loader: 'react-hot!babel'
-    }, {
-      test: /\.css$/,
-      loader: 'style!css!autoprefixer?browsers=last 2 versions'
-    }]
+  entry: {
+    app: [
+      'webpack-dev-server/client?http://localhost:8081/',
+      'webpack/hot/dev-server',
+      './entry.js',
+    ],
   },
-  resolve: {
-    extensions: ['', '.js', '.jsx']
-  },
+
   output: {
-    path: __dirname + '/dist',
-    publicPath: '/',
-    filename: 'bundle.js'
+    path: '/dist',
+    filename: 'bundle.js',
+    publicPath: 'http://localhost:8081/build/',
   },
-  devServer: {
-    contentBase: './dist',
-    hot: true
+
+  module: {
+    loaders: [
+      { test: [/\.js$/, /\.jsx$/], loaders: ['react-hot', 'babel-loader?stage=0'], exclude: /node_modules/ },
+      { test: /\.css$/, loader: 'style-loader!css-loader' },
+      { test: /\.sass$/, loader: 'style-loader!css-loader!sass-loader?indentedSyntax' },
+    ],
   },
+
+  resolve: {
+    modulesDirectories: [
+      'node_modules',
+    ],
+    extensions: ['', '.js', '.jsx', '.json', '.css', '.sass'],
+  },
+
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ]
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(),
+  ],
+
+  debug: true,
+
+  devtool: 'eval-source-map',
 };
