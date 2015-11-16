@@ -1,7 +1,7 @@
-const { Link } = ReactRouter; 
+const { Link } = ReactRouter;
 
 // App component - represents the whole app
-Login = React.createClass({
+Login = class MidiSynth extends React.Component {
   render() {
     return (
       <div>
@@ -11,4 +11,4 @@ Login = React.createClass({
       </div>
     );
   }
-});
+}

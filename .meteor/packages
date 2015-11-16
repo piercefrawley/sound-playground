@@ -27,4 +27,4 @@ meteorhacks:npm
 npm-container
 accounts-password
 accounts-ui
-twbs:bootstrap
+bootstrap

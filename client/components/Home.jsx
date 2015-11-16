@@ -1,16 +1,21 @@
 const { Link } = ReactRouter;
 
 // App component - represents the whole app
-Home = React.createClass({
+Home = class Home extends React.Component {
   render() {
     return (
-      <div className="panel panel-default">
-        <div className="panel-body">
-          <Link to='/login'>Login Page</Link>
+      <div>
+        <div>
           <h1>Sound Playground</h1>
+        </div>
+        <div>
           <p>This is the home route.</p>
+          <Link to='/login'>Login Page</Link>
+        </div>
+        <div>
+          <MidiSynth/>
         </div>
       </div>
     );
   }
-});
+}
