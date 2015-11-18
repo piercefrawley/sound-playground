@@ -4,7 +4,7 @@ const { Link } = ReactRouter;
 Home = class Home extends React.Component {
   render() {
     return (
-      <div>
+      <div className='foo'>
         <div>
           <h1>Sound Playground</h1>
         </div>
@@ -14,6 +14,11 @@ Home = class Home extends React.Component {
         </div>
         <div>
           <MidiSynth/>
+          <div className="btn-group btn-group-lg" role="group" aria-label="...">
+            <button type="button" className="btn btn-default">Left</button>
+            <button type="button" className="btn btn-default">Middle</button>
+            <button type="button" className="btn btn-default">Right</button>
+          </div>
         </div>
       </div>
     );
