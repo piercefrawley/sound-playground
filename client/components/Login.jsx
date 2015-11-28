@@ -4,24 +4,15 @@ const { Link } = ReactRouter;
 Login = class Login extends React.Component {
   render() {
     return (
-      <div className='jumbotron'>
-        <ul class="nav nav-tabs">
-          <li role="presentation" class="active">
-            <p className="navbar-text navbar-right">
-              <Link to="/">Go Home</Link>
-            </p>
-          </li>
-        </ul>
-        <div className='row'>
-          <h1 className='center-block'>This is the login page</h1>
-          <h3>Register</h3>
-          <form className="register" onSubmit={this._handleSubmit} >
-            <p>Email: <input type="text" ref="email"/></p>
-            <p>Password: <input type="password" ref="password"/></p>
-            <p><input type="submit" value="Register"/></p>
-          </form>
-          <LoginButtons/>
-        </div>
+      <div className='row'>
+        <h1 className='center-block'>Welcome to the Login Page</h1>
+        <h3>Register</h3>
+        <form className="register" onSubmit={this._handleSubmit} >
+          <p>Email: <input type="text" ref="email"/></p>
+          <p>Password: <input type="password" ref="password"/></p>
+          <p><input type="submit" value="Register"/></p>
+        </form>
+        <LoginButtons/>
       </div>
     );
   }
@@ -31,7 +22,7 @@ Login = class Login extends React.Component {
 
     // Find the text field via the React ref
     var text = React.findDOMNode(this.refs.textInput).value.trim();
-    debugger;
+    
     Users.insert({
       email: e.target.value,
       createdAt: new Date() // current time

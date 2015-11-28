@@ -1,10 +1,8 @@
 App = React.createClass({
-  getInitialState() {
-    return {};
-  },
   render() {
     return (
       <div>
+        <NavBar/>
         {this.props.children}
       </div>
     );
