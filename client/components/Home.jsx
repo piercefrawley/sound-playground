@@ -1,6 +1,6 @@
 const { Link } = ReactRouter;
 
-// App component - represents the whole app
+// Home Component
 Home = class Home extends React.Component {
   render() {
     return (
