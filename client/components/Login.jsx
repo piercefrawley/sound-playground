@@ -1,34 +1,62 @@
 const { Link } = ReactRouter;
 
 // Login Component
-Login = class Login extends React.Component {
+Login = React.createClass({
   render() {
     return (
       <div className='row'>
         <h1 className='center-block'>Welcome to the Login Page</h1>
-        <h3>Register</h3>
-        <form className="register" onSubmit={this._handleSubmit} >
-          <p>Email: <input type="text" ref="email"/></p>
-          <p>Password: <input type="password" ref="password"/></p>
-          <p><input type="submit" value="Register"/></p>
-        </form>
-        <LoginButtons/>
+        <div className='col-md-4'>
+          <form id="sign-in-with-email" onSubmit={this.onSubmit}>
+            <div className="form-group">
+              <label for="emailAddress">Email Address</label>
+              <input type="email" name="email" className="form-control" placeholder="Enter Email"/>
+            </div>
+            <div className="form-group">
+              <label for="password">Password</label>
+              <input type="password" name="password" className="form-control" placeholder="Enter Password"/>
+            </div>
+            <div className="form-footer">
+              <button type="submit" refs='create' className="btn btn-primary btn-create-account">
+                Create Account
+              </button>
+              <button type="submit" refs='signin' className="btn btn-default btn-sign-in">
+                Sign In
+              </button>
+            </div>
+          </form>
+        </div>
+        <LoginOptions/>
       </div>
     );
-  }
+  },
 
-  _handleSubmit(event) {
-    event.preventDefault();
+  onSubmit(event) {
+    const email = $(event.target).find("[name=email]").val();
+    const password = $(event.target).find("[name=password]").val();
+    const errors = {};
 
-    // Find the text field via the React ref
-    var text = React.findDOMNode(this.refs.textInput).value.trim();
-    
-    Users.insert({
-      email: e.target.value,
-      createdAt: new Date() // current time
+    if (!email) {
+      errors.email = "Email required"
+    }
+
+    if (!password) {
+      errors.password = "Password required"
+    }
+
+    this.setState({ errors });
+
+    if(!R.isEmpty(errors)) { return; }
+
+    Meteor.loginWithPassword(email, password, (err) => {
+      if (err) {
+        this.setState({
+          errors: {'none': err.reason}
+        });
+        return;
+      } else {
+        ReactRouter.history.pushState(null, `/`);
+      }
     });
-
-    // Clear form
-    React.findDOMNode(this.refs.textInput).value = "";
   }
-};
+});

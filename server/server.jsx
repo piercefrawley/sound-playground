@@ -1,3 +1,5 @@
 if(Meteor.isServer) {
-  console.log('hello from server');
+  Meteor.startup(() => {
+    console.log('Hello from server');
+  });
 }

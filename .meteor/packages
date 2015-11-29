@@ -36,3 +36,5 @@ email
 fortawesome:fontawesome
 service-configuration
 http
+react-meteor-data
+ramda:ramda
